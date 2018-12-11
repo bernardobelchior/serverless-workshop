@@ -1,23 +1,14 @@
 <!--
-title: 'AWS Serverless REST API with DynamoDB and offline support example in NodeJS'
-description: 'This example demonstrates how to run a service locally, using the ''serverless-offline'' plugin. It provides a REST API to manage Todos stored in DynamoDB.'
+description: ''
 layout: Doc
 framework: v1
 platform: AWS
 language: nodeJS
-authorLink: 'https://github.com/adambrgmn'
-authorName: 'Adam Bergman'
-authorAvatar: 'https://avatars1.githubusercontent.com/u/13746650?v=4&s=140'
 -->
-# Serverless REST API with DynamoDB and offline support
+# Note Taking API
 
-This example demonstrates how to run a service locally, using the
-[serverless-offline](https://github.com/dherault/serverless-offline) plugin. It
-provides a REST API to manage Todos stored in a DynamoDB, similar to the
-[aws-node-rest-api-with-dynamodb](https://github.com/serverless/examples/tree/master/aws-node-rest-api-with-dynamodb)
-example. A local DynamoDB instance is provided by the
-[serverless-dynamodb-local](https://github.com/99xt/serverless-dynamodb-local)
-plugin.
+This example demonstrates how to run a service locally, using the [serverless-offline](https://github.com/dherault/serverless-offline) plugin.
+It provides a REST API to manage notes stored in DynamoDB.
 
 ## Use-case
 
@@ -40,59 +31,59 @@ serverless offline start
 
 ## Usage
 
-You can create, retrieve, update, or delete todos with the following commands:
+You can create, retrieve, update, or delete notes with the following commands:
 
-### Create a Todo
+### Create a Notes
 
 ```bash
-curl -X POST -H "Content-Type:application/json" http://localhost:3000/todos --data '{ "text": "Learn Serverless" }'
+curl -X POST -H "Content-Type:application/json" http://localhost:3000/notes --data '{ "text": "Learn Serverless" }'
 ```
 
 Example Result:
 ```bash
-{"text":"Learn Serverless","id":"ee6490d0-aa11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":false,"updatedAt":1479138570824}%
+{"text":"Learn Serverless","id":"ee6490d0-aa11e6-9ede-afdfa051af86","createdAt":1479138570824,,"updatedAt":1479138570824}%
 ```
 
-### List all Todos
+### List all notes
 
 ```bash
-curl -H "Content-Type:application/json" http://localhost:3000/todos
+curl -H "Content-Type:application/json" http://localhost:3000/notes
 ```
 
 Example output:
 ```bash
-[{"text":"Deploy my first service","id":"ac90feaa11e6-9ede-afdfa051af86","checked":true,"updatedAt":1479139961304},{"text":"Learn Serverless","id":"206793aa11e6-9ede-afdfa051af86","createdAt":1479139943241,"checked":false,"updatedAt":1479139943241}]%
+[{"text":"Deploy my first service","id":"ac90feaa11e6-9ede-afdfa051af86","updatedAt":1479139961304},{"text":"Learn Serverless","id":"206793aa11e6-9ede-afdfa051af86","createdAt":1479139943241,"updatedAt":1479139943241}]
 ```
 
-### Get one Todo
+### Get one note
 
 ```bash
-# Replace the <id> part with a real id from your todos table
-curl -H "Content-Type:application/json" http://localhost:3000/todos/<id>
-```
-
-Example Result:
-```bash
-{"text":"Learn Serverless","id":"ee6490d0-aa11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":false,"updatedAt":1479138570824}%
-```
-
-### Update a Todo
-
-```bash
-# Replace the <id> part with a real id from your todos table
-curl -X PUT -H "Content-Type:application/json" http://localhost:3000/todos/<id> --data '{ "text": "Learn Serverless", "checked": true }'
+# Replace the <id> part with a real id from your notes table
+curl -H "Content-Type:application/json" http://localhost:3000/notes/<id>
 ```
 
 Example Result:
 ```bash
-{"text":"Learn Serverless","id":"ee6490d0-aa11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":true,"updatedAt":1479138570824}%
+{"text":"Learn Serverless","id":"ee6490d0-aa11e6-9ede-afdfa051af86","createdAt":1479138570824,"updatedAt":1479138570824}%
 ```
 
-### Delete a Todo
+### Update a note
 
 ```bash
-# Replace the <id> part with a real id from your todos table
-curl -X DELETE -H "Content-Type:application/json" http://localhost:3000/todos/<id>
+# Replace the <id> part with a real id from your notes table
+curl -X PUT -H "Content-Type:application/json" http://localhost:3000/notes/<id> --data '{ "text": "Learn Serverless" }'
+```
+
+Example Result:
+```bash
+{"text":"Learn Serverless","id":"ee6490d0-aa11e6-9ede-afdfa051af86","createdAt":1479138570824,"updatedAt":1479138570824}%
+```
+
+### Delete a note
+
+```bash
+# Replace the <id> part with a real id from your notes table
+curl -X DELETE -H "Content-Type:application/json" http://localhost:3000/notes/<id>
 ```
 
 No output
