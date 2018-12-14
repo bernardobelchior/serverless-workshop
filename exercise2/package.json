@@ -1,0 +1,34 @@
+{
+  "name": "exercise2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "screenshot/diff.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "s3rver": "s3rver -d /tmp",
+    "dev": "nodemon --exec 'sls offline start'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@serverless-chrome/lambda": "^1.0.0-55",
+    "aws-sdk": "2.373.0",
+    "chrome-remote-interface": "^0.27.0",
+    "pixelmatch": "^4.0.2",
+    "pngjs": "^3.3.3"
+  },
+  "devDependencies": {
+    "chrome-launcher": "^0.10.5",
+    "eslint": "^5.10.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^1.18.8",
+    "prettier": "^1.15.3",
+    "s3rver": "^2.2.7",
+    "serverless-offline": "^3.8.3"
+  }
+}

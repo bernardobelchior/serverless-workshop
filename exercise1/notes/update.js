@@ -1,6 +1,6 @@
 "use strict";
 
-const dynamodb = require("./interfaces/dynamodb");
+const dynamodb = require("../interfaces/dynamodb");
 
 module.exports.update = async (event) => {
   const timestamp = new Date().getTime();

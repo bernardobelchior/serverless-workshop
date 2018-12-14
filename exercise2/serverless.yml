@@ -1,0 +1,45 @@
+service: serverless-workshop
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  environment:
+    DEBUG: "*"
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:ListBucket
+      Resource: "arn:aws:s3:::screenshots"
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+        - s3:GetObject
+        - s3:DeleteObject
+      Resource: "arn:aws:s3:::screenshots/*"
+
+functions:
+  store:
+    handler: screenshot/store.handler
+    events:
+      - http:
+          path: /store/{id}
+          method: put
+          cors: true
+  diff:
+    handler: screenshot/diff.handler
+    events:
+      - http:
+          path: /diff/{id}
+          method: post
+          cors: true
+
+resources:
+Resources:
+  MyBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: screenshots
+      AccessControl: PublicReadWrite

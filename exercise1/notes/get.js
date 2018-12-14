@@ -1,6 +1,6 @@
 "use strict";
 
-const dynamodb = require("./interfaces/dynamodb");
+const dynamodb = require("../interfaces/dynamodb");
 
 module.exports.get = async (event) => {
   const params = {
