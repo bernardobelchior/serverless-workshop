@@ -1,39 +1,61 @@
-<!--
-description: ''
-layout: Doc
-framework: v1
-platform: AWS
-language: nodeJS
--->
 # Note Taking API
 
 This example demonstrates how to run a service locally, using the [serverless-offline](https://github.com/dherault/serverless-offline) plugin.
 It provides a REST API to manage notes stored in DynamoDB.
 
-## Use-case
+## Requirements
 
-Test your service locally, without having to deploy it first.
+* [NodeJS](https://nodejs.org/en/)
 
-## Setup
+## Install
 
+First, install the Serverless Framework globally:
 ```bash
-npm install
-serverless dynamodb install
-serverless offline start
-serverless dynamodb migrate (this imports schema)
+npm install -g serverless
 ```
 
-## Run service offline
+Then install the exercise dependencies:
+```bash
+npm install
+```
+
+And install DynamoDB for local use:
+```bash
+serverless dynamodb install
+```
+
+## Run
+
+You can run this project by either (1) running the API Gateway, allowing you to use it as a REST API; or by (2) using `sls invoke local`, allowing you to use the JSON files in the `examples` directory.
+
+
+#### Running API
+
+In order to start the API, only the following command is needed:
 
 ```bash
-serverless offline start
+npm run dev
+```
+
+#### Running Locally
+
+First, you have to the following command in a separate terminal to emulate AWS DynamoDB:
+```bash
+npm run dynamodb
+```
+
+Substitute `<function-name>` with the function name in `serverless.yml` and `<filename.json>` with the name of the file to use.
+The environment variable `IS_OFFLINE` is mandatory, otherwise the DynamoDB connection will fail.
+
+```bash
+sls invoke local --function <function-name> --path examples/<filename.json> -e IS_OFFLINE=true
 ```
 
 ## Usage
 
 You can create, retrieve, update, or delete notes with the following commands:
 
-### Create a Notes
+### Create a Note
 
 ```bash
 curl -X POST -H "Content-Type:application/json" http://localhost:3000/notes --data '{ "text": "Learn Serverless" }'

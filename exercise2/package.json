@@ -11,7 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@serverless-chrome/lambda": "^1.0.0-55",
     "aws-sdk": "2.373.0",
     "chrome-remote-interface": "^0.27.0",
     "pixelmatch": "^4.0.2",
@@ -26,9 +25,10 @@
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "nodemon": "^1.18.8",
+    "nodemon": "^1.18.9",
     "prettier": "^1.15.3",
     "s3rver": "^2.2.7",
-    "serverless-offline": "^3.8.3"
+    "serverless-offline": "^3.8.3",
+    "serverless-plugin-chrome": "^1.0.0-55"
   }
 }

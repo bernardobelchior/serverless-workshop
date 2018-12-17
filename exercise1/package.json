@@ -5,8 +5,12 @@
   "repository": "",
   "author": "Bernardo Belchior <bernardo.belchior1@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dynamodb": "sls dynamodb start --migrate",
+    "dev": "sls offline start"
+  },
   "dependencies": {
-    "aws-sdk": "^2.12.0",
+    "aws-sdk": "^2.377.0",
     "uuid": "^2.0.3"
   },
   "devDependencies": {

@@ -1,7 +1,18 @@
 service: serverless-workshop
 
 plugins:
+  - serverless-plugin-chrome
   - serverless-offline
+
+custom:
+  chrome:
+    flags:
+      - --window-size=1280,1696
+      - --hide-scrollbars
+      - --headless
+      - --no-sandbox # If you can't run Chrome, uncomment this line.
+    functions:
+      - diff
 
 provider:
   name: aws

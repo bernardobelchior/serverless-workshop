@@ -1,5 +1,4 @@
 const { PNG } = require("pngjs");
-const launchChrome = require("@serverless-chrome/lambda");
 const CDP = require("chrome-remote-interface");
 const s3Require = require("../interfaces/s3")();
 const pixelmatch = require("pixelmatch");
@@ -8,16 +7,9 @@ module.exports.handler = async (event) => {
   const { body, pathParameters: { id } } = event;
 
   let client;
-  let kill;
 
   try {
     const s3 = await s3Require;
-
-    const chrome = await launchChrome({
-      flags: ["--window-size=1280,1696", "--hide-scrollbars", "--headless"]
-    });
-
-    kill = chrome.kill;
 
     client = await CDP();
 
@@ -34,6 +26,7 @@ module.exports.handler = async (event) => {
     await DOM.getDocument();
 
     await DOM.setOuterHTML({ nodeId: 1, outerHTML: Body.toString("utf8") });
+
     const screenshot1 = await Page.captureScreenshot({ format: "png" });
 
     await DOM.setOuterHTML({ nodeId: 1, outerHTML: body });
@@ -83,10 +76,6 @@ module.exports.handler = async (event) => {
 
     if (client) {
       await client.close();
-    }
-
-    if (kill) {
-      await kill();
     }
 
     return {
