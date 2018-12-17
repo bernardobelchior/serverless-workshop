@@ -53,7 +53,8 @@ sls invoke local --function <function-name> --path examples/<filename.json> -e I
 
 ## Usage
 
-You can create, retrieve, update, or delete notes with the following commands:
+You can create, retrieve, update, or delete notes with the following commands.
+The `examples` directory also contains some events in JSON form to use with `sls invoke local`.
 
 ### Create a Note
 
