@@ -47,8 +47,9 @@ sls invoke local --function <function-name> --path examples/<filename.json> -e I
 ## Usage
 
 The `examples` directory contains Wikipedia and GitHub HTML files for using.
-Wikipedia should always match, while GitHub should not. 
-Note: GitHub does not match because it has some JavaScript that controls a loading animation which is not always in the same state across different invocation of Chrome.
+
+Calling store and diff with Wikipedia's HTML should always match, while GitHub's should not. 
+Note: GitHub does not match because it has some JavaScript that controls a loading animation which is not always in the same state across different invocations of Chrome.
 
 ### Store HTML file
 
