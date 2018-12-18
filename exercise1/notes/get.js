@@ -4,7 +4,7 @@ const dynamodb = require("../interfaces/dynamodb");
 
 module.exports.get = async (event) => {
   const params = {
-    TableName: process.env.DYNAMODB_TABLE,
+    TableName: 'notes',
     Key: {
       id: event.pathParameters.id
     }

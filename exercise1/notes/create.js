@@ -18,7 +18,7 @@ module.exports.create = async (event) => {
   }
 
   const params = {
-    TableName: process.env.DYNAMODB_TABLE,
+    TableName: 'notes',
     Item: {
       id: uuid.v1(),
       text: data.text,

@@ -18,7 +18,7 @@ module.exports.update = async (event) => {
   }
 
   const params = {
-    TableName: process.env.DYNAMODB_TABLE,
+    TableName: 'notes',
     Key: {
       id: event.pathParameters.id
     },
