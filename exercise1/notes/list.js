@@ -7,5 +7,5 @@ const dynamodb = require("../interfaces/dynamodb");
  * @return {Promise<void>}
  */
 module.exports.list = async () => {
-  /* TODO */
+  /* TODO: List all notes */
 };

@@ -8,7 +8,7 @@ module.exports.create = async (event) => {
   const data = JSON.parse(event.body);
 
   const params = {
-    /* Configure this object */
+    /* TODO: Configure this object */
   };
 
   try {

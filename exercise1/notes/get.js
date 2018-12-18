@@ -8,5 +8,5 @@ const dynamodb = require("../interfaces/dynamodb");
  * @return {Promise<void>}
  */
 module.exports.get = async (event) => {
-  /* TODO */
+  /* TODO: get note by ID */
 };

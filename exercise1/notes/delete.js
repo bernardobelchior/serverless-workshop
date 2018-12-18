@@ -6,7 +6,7 @@ module.exports.delete = async (event) => {
   const params = {
     TableName: 'notes',
     Key: {
-      // id: /* where to get the id from? */
+      // id: /* TODO: obtain id from path parameters */
     }
   };
 

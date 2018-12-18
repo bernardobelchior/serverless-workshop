@@ -17,7 +17,7 @@ module.exports.update = async (event) => {
   }
 
   const params = {
-    /* TODO */
+    /* TODO: Fill the params object. Refer to DynamoDB API Reference. */
   };
 
   try {
