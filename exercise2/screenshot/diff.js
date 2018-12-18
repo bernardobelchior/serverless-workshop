@@ -1,41 +1,31 @@
 const { PNG } = require("pngjs");
-const CDP = require("chrome-remote-interface");
+const Chrome = require('../interfaces/chrome');
 const s3Require = require("../interfaces/s3")();
 const pixelmatch = require("pixelmatch");
 
-module.exports.handler = async (event) => {
-  const { body, pathParameters: { id } } = event;
+let chrome = new Chrome();
 
-  let client;
+module.exports.handler = async (event) => {
+  const { body: newHTML, pathParameters: { id } } = event;
 
   try {
     const s3 = await s3Require;
 
-    client = await CDP();
+    await chrome.init();
 
-    const { Network, Page, DOM } = client;
-
-    const { Body } = await s3.getObject({
+    let { Body: originalHTML } = await s3.getObject({
       Bucket: "stored-html",
       Key: id
     }).promise();
 
-    await Network.enable();
-    await DOM.enable();
-    await Page.enable();
-    await DOM.getDocument();
+    originalHTML = originalHTML.toString();
 
-    await DOM.setOuterHTML({ nodeId: 1, outerHTML: Body.toString("utf8") });
+    await chrome.setHTML(originalHTML);
+    const image1 = await chrome.captureScreenshot();
 
-    const screenshot1 = await Page.captureScreenshot({ format: "png" });
+    await chrome.setHTML(newHTML);
+    const image2 = await chrome.captureScreenshot();
 
-    await DOM.setOuterHTML({ nodeId: 1, outerHTML: body });
-    const screenshot2 = await Page.captureScreenshot({ format: "png" });
-
-    await client.close();
-
-    const image1 = PNG.sync.read(Buffer.from(screenshot1.data, "base64"));
-    const image2 = PNG.sync.read(Buffer.from(screenshot2.data, "base64"));
     const diff = new PNG({ width: image1.width, height: image1.height });
 
     const pixelDiff = pixelmatch(image1.data, image2.data, diff.data, image1.width, image1.height, { threshold: 0 });
@@ -61,6 +51,8 @@ module.exports.handler = async (event) => {
       }).promise()
     ]);
 
+    await chrome.close();
+
     return {
       statusCode: 200,
       body: JSON.stringify({
@@ -74,9 +66,7 @@ module.exports.handler = async (event) => {
   } catch (e) {
     console.error(e);
 
-    if (client) {
-      await client.close();
-    }
+    await chrome.close();
 
     return {
       statusCode: 500
