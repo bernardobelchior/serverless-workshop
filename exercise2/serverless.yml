@@ -19,17 +19,6 @@ provider:
   runtime: nodejs8.10
   environment:
     DEBUG: "*"
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - s3:ListBucket
-      Resource: "arn:aws:s3:::screenshots"
-    - Effect: Allow
-      Action:
-        - s3:PutObject
-        - s3:GetObject
-        - s3:DeleteObject
-      Resource: "arn:aws:s3:::screenshots/*"
 
 functions:
   store:
@@ -46,11 +35,3 @@ functions:
           path: /diff/{id}
           method: post
           cors: true
-
-resources:
-Resources:
-  MyBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: screenshots
-      AccessControl: PublicReadWrite

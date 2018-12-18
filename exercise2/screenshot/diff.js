@@ -46,19 +46,19 @@ module.exports.handler = async (event) => {
     const [{ Location: original }, { Location: final }, { Location: diffUrl }] = await Promise.all([
       s3.upload({
         Body: PNG.sync.write(image1),
-        Bucket: "stored-html",
+        Bucket: "screenshots",
         Key: `${id}-original`,
         ContentType: "image/png"
       }).promise(),
       s3.upload({
         Body: PNG.sync.write(image2),
-        Bucket: "stored-html",
+        Bucket: "screenshots",
         Key: `${id}-final`,
         ContentType: "image/png"
       }).promise(),
       s3.upload({
         Body: PNG.sync.write(diff),
-        Bucket: "stored-html",
+        Bucket: "screenshots",
         Key: `${id}-diff`,
         ContentType: "image/png"
       }).promise()

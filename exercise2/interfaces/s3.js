@@ -25,6 +25,17 @@ async function create () {
     }
   }
 
+  try {
+    await s3.createBucket({
+      Bucket: "screenshots"
+    }).promise();
+  } catch (e) {
+    if (e.code !== "BucketAlreadyExists") {
+      console.error(e);
+      process.exit(1);
+    }
+  }
+
   return s3;
 }
 

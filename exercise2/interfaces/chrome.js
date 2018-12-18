@@ -1,7 +1,7 @@
 const { PNG } = require("pngjs");
 const CDP = require("chrome-remote-interface");
 
-export default class Chrome {
+module.exports = class Chrome {
   /**
    * Initializes chrome remote interface. Must be called before any other function.
    * @return {Promise<void>}
@@ -11,10 +11,12 @@ export default class Chrome {
 
     const { Page, DOM } = this.client;
 
-    return Promise.all([
-      await DOM.enable(),
-      await Page.enable()
+    await Promise.all([
+      DOM.enable(),
+      Page.enable()
     ]);
+
+    return DOM.getDocument()
   }
 
   /**
