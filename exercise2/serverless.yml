@@ -20,18 +20,9 @@ provider:
   environment:
     DEBUG: "*"
 
+## Configure endpoints
+## store path: PUT /store/{id}
+## diff path: POST /diff/{id}
 functions:
-  store:
-    handler: screenshot/store.handler
-    events:
-      - http:
-          path: /store/{id}
-          method: put
-          cors: true
-  diff:
-    handler: screenshot/diff.handler
-    events:
-      - http:
-          path: /diff/{id}
-          method: post
-          cors: true
+  # store:
+  # diff:

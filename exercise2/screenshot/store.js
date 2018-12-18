@@ -7,13 +7,7 @@ module.exports.handler = async (event) => {
     // Wait for s3 require to finish
     const s3 = await s3Require;
 
-    // Store the HTML with the given id and obtain its URL
-    const { Location } = await s3.upload({
-      Body: body,
-      Bucket: "stored-html",
-      Key: id,
-      ContentType: "text/html"
-    }).promise();
+    /* TODO: Store HTML in Bucket named 'stored-html' */
 
     // Return response with the file location
     return {

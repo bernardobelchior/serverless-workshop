@@ -7,24 +7,8 @@ module.exports.create = async (event) => {
   const timestamp = new Date().getTime();
   const data = JSON.parse(event.body);
 
-  if (typeof data.text !== "string") {
-    console.error("Text must be a string");
-
-    return {
-      statusCode: 400,
-      headers: { "Content-Type": "text/plain" },
-      body: "Couldn't create the todo item."
-    }
-  }
-
   const params = {
-    TableName: 'notes',
-    Item: {
-      id: uuid.v1(),
-      text: data.text,
-      createdAt: timestamp,
-      updatedAt: timestamp
-    }
+    /* Configure this object */
   };
 
   try {

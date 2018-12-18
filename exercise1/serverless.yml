@@ -17,6 +17,10 @@ provider:
   name: aws
   runtime: nodejs8.10
 
+## Complete missing endpoints
+## list path: GET /notes
+## update path: UPDATE /notes/{id}
+## delete path: DELETE /notes/{id}
 functions:
   create:
     handler: notes/create.create
@@ -26,13 +30,7 @@ functions:
           method: post
           cors: true
 
-  list:
-    handler: notes/list.list
-    events:
-      - http:
-          path: notes
-          method: get
-          cors: true
+  # list:
 
   get:
     handler: notes/get.get
@@ -42,21 +40,9 @@ functions:
           method: get
           cors: true
 
-  update:
-    handler: notes/update.update
-    events:
-      - http:
-          path: notes/{id}
-          method: put
-          cors: true
+  # update:
 
-  delete:
-    handler: notes/delete.delete
-    events:
-      - http:
-          path: notes/{id}
-          method: delete
-          cors: true
+  # delete:
 
 
 resources:

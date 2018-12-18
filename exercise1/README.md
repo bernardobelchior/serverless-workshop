@@ -2,6 +2,7 @@
 
 This example demonstrates how to run a service locally, using the [serverless-offline](https://github.com/dherault/serverless-offline) plugin.
 It provides a REST API to manage notes stored in DynamoDB.
+You don't need to change anything outside the `notes` directory and the `serverless.yml` file.
 
 ## Requirements
 

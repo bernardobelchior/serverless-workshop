@@ -7,7 +7,7 @@ async function create () {
 
   if (process.env.IS_OFFLINE) {
     options = {
-      s3ForcePathStyle: true,
+      s3ForcePathStyle: true, // Needed to use with s3rver
       endpoint: "http://localhost:4568"
     };
   }

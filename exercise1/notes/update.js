@@ -6,7 +6,6 @@ module.exports.update = async (event) => {
   const timestamp = new Date().getTime();
   const data = JSON.parse(event.body);
 
-  // validation
   if (typeof data.text !== "string") {
     console.error("Text must be a string");
 
@@ -18,19 +17,7 @@ module.exports.update = async (event) => {
   }
 
   const params = {
-    TableName: 'notes',
-    Key: {
-      id: event.pathParameters.id
-    },
-    ExpressionAttributeNames: {
-      "#text": "text"
-    },
-    ExpressionAttributeValues: {
-      ":text": data.text,
-      ":updatedAt": timestamp
-    },
-    UpdateExpression: "SET #text = :text, updatedAt = :updatedAt",
-    ReturnValues: "ALL_NEW"
+    /* TODO */
   };
 
   try {
