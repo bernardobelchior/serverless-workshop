@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "s3rver": "s3rver -d /tmp",
-    "dev": "nodemon --exec 'sls offline start'"
+    "dev": "sls offline start"
   },
   "author": "",
   "license": "ISC",
@@ -25,7 +25,6 @@
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "nodemon": "^1.18.9",
     "prettier": "^1.15.3",
     "s3rver": "^2.2.7",
     "serverless-offline": "^3.8.3",
